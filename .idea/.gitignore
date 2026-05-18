@@ -1,0 +1,46 @@
+# ── Maven build output ───────────────────────────────────────────────────────
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ── IntelliJ IDEA ────────────────────────────────────────────────────────────
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ── Eclipse ───────────────────────────────────────────────────────────────────
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ── VS Code ───────────────────────────────────────────────────────────────────
+.vscode/
+
+# ── OS files ─────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Compiled class files ─────────────────────────────────────────────────────
+*.class
+
+# ── Package files ─────────────────────────────────────────────────────────────
+*.jar
+*.war
+*.ear
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Spring Boot devtools ─────────────────────────────────────────────────────
+.spring-boot-devtools.properties
+
+# ── Environment / secrets — NEVER commit these ───────────────────────────────
+.env
+*.env
+application-prod.yml
+k8s/secrets.yaml

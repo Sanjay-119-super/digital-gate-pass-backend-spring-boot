@@ -1,0 +1,157 @@
+# ─────────────────────────────────────────────────────────────
+# Digital Gate Pass — Kubernetes manifests
+#
+# Apply everything at once:
+#   kubectl apply -f k8s/deployment.yaml
+#
+# Prerequisites:
+#   - A running MySQL instance accessible at the host/port in DB_URL
+#   - A running Redis instance accessible at REDIS_HOST
+#   - A Kubernetes Secret named "gatepass-secrets" containing all
+#     sensitive values (see Secret section at the bottom)
+# ─────────────────────────────────────────────────────────────
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gatepass
+
+---
+
+# ── Application Deployment ─────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatepass-app
+  namespace: gatepass
+  labels:
+    app: gatepass-app
+spec:
+  replicas: 2           # Start with 2 pods; HPA will scale up/down automatically
+  selector:
+    matchLabels:
+      app: gatepass-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0  # Zero-downtime deployments — always keep existing pods alive
+  template:
+    metadata:
+      labels:
+        app: gatepass-app
+    spec:
+      containers:
+        - name: gatepass-app
+          image: gatepass-backend:1.0.0   # Replace with your registry image tag
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+
+          # Resource requests/limits — tune based on actual load testing
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+
+          # All secrets come from a Kubernetes Secret (never put credentials in YAML)
+          envFrom:
+            - secretRef:
+                name: gatepass-secrets
+
+          # Health checks — K8s restarts the pod if it becomes unhealthy
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 45
+            periodSeconds: 15
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
+
+---
+
+# ── ClusterIP Service ─────────────────────────────────────────────────────
+# Internal service — expose via an Ingress or LoadBalancer in production
+apiVersion: v1
+kind: Service
+metadata:
+  name: gatepass-service
+  namespace: gatepass
+spec:
+  selector:
+    app: gatepass-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+
+---
+
+# ── Horizontal Pod Autoscaler ─────────────────────────────────────────────
+# Scales between 2 and 10 pods based on CPU utilisation.
+# Requires the Kubernetes Metrics Server to be installed.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gatepass-hpa
+  namespace: gatepass
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gatepass-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+
+---
+
+# ── Secrets template ──────────────────────────────────────────────────────
+# Fill in real values and apply with:
+#   kubectl apply -f k8s/secrets.yaml   (keep this file OUT of version control)
+#
+# Or create via kubectl:
+#   kubectl create secret generic gatepass-secrets \
+#     --from-literal=DB_URL="jdbc:mysql://mysql:3306/gatepass?..." \
+#     --from-literal=DB_USER="root" \
+#     ...etc
+#
+# Template only — values are placeholders:
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gatepass-secrets
+  namespace: gatepass
+type: Opaque
+stringData:
+  DB_URL: "jdbc:mysql://MYSQL_HOST:3306/gatepass?useSSL=true&serverTimezone=UTC"
+  DB_USER: "CHANGE_ME"
+  DB_PASS: "CHANGE_ME"
+  REDIS_HOST: "REDIS_HOST"
+  REDIS_PORT: "6379"
+  JWT_SECRET: "CHANGE_ME_AT_LEAST_32_CHARACTERS_LONG"
+  QR_HMAC_SECRET: "CHANGE_ME_AT_LEAST_32_CHARACTERS_LONG"
+  APP_BASE_URL: "https://gatepass.college.edu"
+  ADMIN_EMAIL: "admin@gatepass.edu"
+  ADMIN_PASSWORD: "CHANGE_ME_STRONG_PASSWORD"
+  MAIL_HOST: "smtp.gmail.com"
+  MAIL_USER: "CHANGE_ME"
+  MAIL_PASS: "CHANGE_ME"

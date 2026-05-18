@@ -1,0 +1,83 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────
+# Digital Gate Pass — local development stack
+#
+# Start everything:
+#   docker compose up --build
+#
+# API:     http://localhost:8080
+# Swagger: http://localhost:8080/swagger-ui.html
+# ─────────────────────────────────────────────────────────────
+
+services:
+
+  # ── MySQL 8 database ───────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: gatepass-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gatepass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis 7 (QR verify cache) ──────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: gatepass-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Spring Boot application ────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gatepass-app
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # Database
+      DB_URL: "jdbc:mysql://mysql:3306/gatepass?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true"
+      DB_USER: root
+      DB_PASS: root
+      # Redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      # JWT — CHANGE THIS in any non-local environment
+      JWT_SECRET: "change-me-please-this-must-be-at-least-32-bytes-long-secret-key!"
+      QR_HMAC_SECRET: "another-very-long-secret-for-qr-signing-change-in-production!"
+      # Public URL used inside QR codes (update to your server's IP/domain in production)
+      APP_BASE_URL: "http://localhost:8080"
+      # Admin seed (DataSeeder uses these on first boot)
+      ADMIN_EMAIL: "admin@gatepass.edu"
+      ADMIN_PASSWORD: "Admin@1234"
+      # Mail (leave blank to skip sending emails in local dev)
+      MAIL_HOST: "smtp.gmail.com"
+      MAIL_USER: ""
+      MAIL_PASS: ""
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+# Named volumes — data survives container restarts
+volumes:
+  mysql_data: {}

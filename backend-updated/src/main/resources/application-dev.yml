@@ -1,0 +1,20 @@
+# Dev profile overrides – mail disable, debug logs, flyway repair allowed
+
+spring:
+  flyway:
+    repair-on-migrate: true   # dev mein migration edit karne ke baad auto repair
+
+  mail:
+    # dev mein mail server nahi chahiye, but host/port default rakh sakte hain (use nahi hoga)
+    host: smtp.gmail.com
+    port: 587
+
+logging:
+  level:
+    com.college.gatepass: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+app:
+  mail:
+    enabled: false   # dev mein email bhejna band
