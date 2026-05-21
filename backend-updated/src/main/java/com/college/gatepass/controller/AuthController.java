@@ -101,4 +101,6 @@ public class AuthController {
         return ResponseEntity.ok(
                 new Dtos.MessageResponse("Password reset successful. You can now log in."));
     }
+
+
 }
