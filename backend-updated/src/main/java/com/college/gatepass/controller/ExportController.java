@@ -28,7 +28,7 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("/api/export")
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasAnyRole('ADMIN','WARDEN')")
 public class ExportController {
 
     private final ExportService exportService;

@@ -87,8 +87,10 @@ springdoc:
 
 logging:
   level:
-    org.springframework.security: INFO
+    org.springframework.security: DEBUG
     org.flywaydb: INFO
-    com.college.gatepass: INFO
+    com.college.gatepass: DEBUG
+    org.springframework.web: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+

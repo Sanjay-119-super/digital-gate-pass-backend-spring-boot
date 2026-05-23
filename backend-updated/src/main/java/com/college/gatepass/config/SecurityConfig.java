@@ -86,7 +86,7 @@ public class SecurityConfig {
 
                         // Admin-only endpoints
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/export/**").hasRole("ADMIN")
+                        .requestMatchers("/api/export/**").hasAnyRole("ADMIN", "WARDEN")   // ✅ fixed
                         .requestMatchers("/actuator/**").hasRole("ADMIN")
 
                         // Everything else requires at least a valid token
