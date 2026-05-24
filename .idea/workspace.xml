@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bfb2d434-b14a-42b8-ae10-bf1c469e880f" name="Changes" comment="" />
+    <list default="true" id="bfb2d434-b14a-42b8-ae10-bf1c469e880f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/service/EmailService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,10 +67,11 @@
   <component name="RunManager">
     <configuration name="GatepassApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
-        <env name="MAIL_USER" value="saginfo54@gmail.com" />
-        <env name="MAIL_PASS" value="rivn myvl yfem uenq" />
-        <env name="MAIL_FROM" value="saginfo54@gmail.com" />
         <env name="MAIL_ENABLED" value="true" />
+        <env name="MAIL_FROM" value="saginfo54@gmail.com" />
+        <env name="MAIL_PASS" value="rivn myvl yfem uenq" />
+        <env name="MAIL_USER" value="saginfo54@gmail.com" />
+        <env name="SPRING_PROFILES_ACTIVE" value="prod" />
       </envs>
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
       <module name="gatepass-backend" />
@@ -95,5 +99,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/controller/GatePassController.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

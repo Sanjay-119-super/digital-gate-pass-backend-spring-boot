@@ -63,7 +63,7 @@ public class EmailService {
 
         String to          = pass.getStudent().getEmail();
         String studentName = pass.getStudent().getFullName();
-        String subject     = "✅ Gate Pass Approved — " + pass.getPassType();
+        String subject     = " Gate Pass Approved — " + pass.getPassType();
 
         String qrLink = baseUrl + "/api/passes/" + pass.getId() + "/qr";
 
@@ -73,7 +73,7 @@ public class EmailService {
                 <body style="font-family: Arial, sans-serif; background:#f4f4f4; padding:20px;">
                   <div style="max-width:600px; margin:auto; background:#fff; border-radius:8px;
                               box-shadow:0 2px 8px rgba(0,0,0,0.1); padding:32px;">
-                    <h2 style="color:#2e7d32;">✅ Your Gate Pass Has Been Approved</h2>
+                    <h2 style="color:#2e7d32;"> Your Gate Pass Has Been Approved</h2>
                     <p>Hi <strong>%s</strong>,</p>
                     <p>Your gate pass request has been <strong style="color:#2e7d32;">approved</strong>
                        by your warden. Here are the details:</p>
