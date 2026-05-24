@@ -161,15 +161,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-
-        // Production mein env variable se lo, hardcode mat karo
         config.setAllowedOrigins(List.of(
-                "http://localhost:3000",                         // development
-                "https://sanjay-119-super-digital-gate-pass.vercel.app", // old (optional)
-                "https://gatepass.ju.edu.vercel.app"            // new Vercel URL
-//                "https://your-custom-domain.com"                 // if using custom domain
+                "http://localhost:3000",                          // local dev
+                "https://gatepassjuedu.vercel.app"                // ✅ YOUR NEW FRONTEND
         ));
-
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
