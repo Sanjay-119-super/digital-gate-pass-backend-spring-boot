@@ -164,8 +164,10 @@ public class SecurityConfig {
 
         // Production mein env variable se lo, hardcode mat karo
         String allowedOrigin = System.getenv().getOrDefault(
-                "ALLOWED_ORIGIN", "http://localhost:3000"
-        );
+//                "ALLOWED_ORIGIN", "http://localhost:3000"
+                "https://sanjay-119-super-digital-gate-pass.vercel.app", // old (optional)
+                "https://gatepass.ju.edu.vercel.app"
+                );
         config.setAllowedOrigins(List.of(allowedOrigin));
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
@@ -177,4 +179,6 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return source;
     }
+
+
 }

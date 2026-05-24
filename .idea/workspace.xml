@@ -6,16 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bfb2d434-b14a-42b8-ae10-bf1c469e880f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/controller/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/src/main/java/com/college/gatepass/controller/ExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/classes/com/college/gatepass/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/classes/com/college/gatepass/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/classes/com/college/gatepass/controller/ExportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/classes/com/college/gatepass/controller/ExportController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/gatepass-backend-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/gatepass-backend-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/gatepass-backend-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/gatepass-backend-1.0.0.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/surefire-reports/TEST-com.college.gatepass.PassFlowTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/surefire-reports/TEST-com.college.gatepass.PassFlowTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-updated/target/surefire-reports/com.college.gatepass.PassFlowTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend-updated/target/surefire-reports/com.college.gatepass.PassFlowTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +50,7 @@
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/devil/Downloads/digital-gate-pass-backend/backend-updated/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/devil/Downloads/Digital Gate Pass Backend Frontend/digital-gate-pass-backend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
