@@ -166,8 +166,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",                         // development
                 "https://sanjay-119-super-digital-gate-pass.vercel.app", // old (optional)
-                "https://your-new-url.vercel.app",               // new Vercel URL
-                "https://your-custom-domain.com"                 // if using custom domain
+                "https://gatepass.ju.edu.vercel.app"            // new Vercel URL
+//                "https://your-custom-domain.com"                 // if using custom domain
         ));
 
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
