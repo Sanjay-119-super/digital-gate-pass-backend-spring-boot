@@ -163,17 +163,18 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Production mein env variable se lo, hardcode mat karo
-        String allowedOrigin = System.getenv().getOrDefault(
-//                "ALLOWED_ORIGIN", "http://localhost:3000"
+        config.setAllowedOrigins(List.of(
+                "http://localhost:3000",                         // development
                 "https://sanjay-119-super-digital-gate-pass.vercel.app", // old (optional)
-                "https://gatepass.ju.edu.vercel.app"
-                );
-        config.setAllowedOrigins(List.of(allowedOrigin));
+                "https://your-new-url.vercel.app",               // new Vercel URL
+                "https://your-custom-domain.com"                 // if using custom domain
+        ));
+
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
         config.setAllowCredentials(true);
-        config.setMaxAge(3600L); // Preflight cache 1 hour
+        config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
