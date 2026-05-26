@@ -1,3 +1,4 @@
+/*
 package com.college.gatepass.service;
 
 import com.college.gatepass.entity.GatePass;
@@ -15,6 +16,7 @@ import jakarta.mail.internet.MimeMessage;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+*/
 /**
  * Sends HTML emails to students when their gate pass is approved, rejected, or expired.
  *
@@ -25,7 +27,8 @@ import java.time.format.DateTimeFormatter;
  *
  * <p>If the mail server is not configured (e.g. in local dev), failures are simply
  * logged as warnings rather than crashing the server.
- */
+ *//*
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -33,30 +36,40 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    /** Display name shown in the "From" field of outgoing emails. */
+    */
+/** Display name shown in the "From" field of outgoing emails. *//*
+
     @Value("${app.mail.from-name:Gate Pass System}")
     private String fromName;
 
-    /** Email address shown in the "From" field. */
+    */
+/** Email address shown in the "From" field. *//*
+
     @Value("${app.mail.from-address:no-reply@gatepass.college.edu}")
     private String fromAddress;
 
-    /** Public base URL used to build the "View Pass" button link in emails. */
+    */
+/** Public base URL used to build the "View Pass" button link in emails. *//*
+
     @Value("${app.base-url:http://localhost:8080}")
     private String baseUrl;
 
-    /** Formats timestamps in a human-readable way for email bodies. */
+    */
+/** Formats timestamps in a human-readable way for email bodies. *//*
+
     private static final DateTimeFormatter FORMATTER =
             DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a")
                     .withZone(ZoneId.of("Asia/Kolkata"));
 
-    /**
+    */
+/**
      * Sends an approval email to the student with their gate pass details.
      * The email includes the leave time, return deadline, and a link to view
      * or download the QR code.
      *
      * @param pass the approved gate pass entity (must have student email and qrToken set)
-     */
+     *//*
+
     @Async("appTaskExecutor")
     public void sendApprovalEmail(GatePass pass) {
         if (pass.getStudent() == null || pass.getStudent().getEmail() == null) return;
@@ -115,11 +128,13 @@ public class EmailService {
         send(to, subject, html);
     }
 
-    /**
+    */
+/**
      * Sends a rejection email to the student explaining why their request was denied.
      *
      * @param pass the rejected gate pass entity (must have student email and decisionNote set)
-     */
+     *//*
+
     @Async("appTaskExecutor")
     public void sendRejectionEmail(GatePass pass) {
         if (pass.getStudent() == null || pass.getStudent().getEmail() == null) return;
@@ -156,12 +171,14 @@ public class EmailService {
         send(to, subject, html);
     }
 
-    /**
+    */
+/**
      * Sends an expiry warning email to a student whose approved pass is about to expire.
      * This is called by the {@code PassExpiryScheduler} before marking a pass as EXPIRED.
      *
      * @param pass the gate pass that is about to expire
-     */
+     *//*
+
     @Async("appTaskExecutor")
     public void sendExpiryWarningEmail(GatePass pass) {
         if (pass.getStudent() == null || pass.getStudent().getEmail() == null) return;
@@ -224,7 +241,9 @@ public class EmailService {
         }
     }
 
-    /*-------New Changes---------*/
+    */
+/*-------New Changes---------*//*
+
 
     @Async("appTaskExecutor")
     public void sendVerificationEmail(User user, String otp) {
@@ -256,8 +275,9 @@ public class EmailService {
         send(to, subject, html);
     }
 }
+*/
 
-/*package com.college.gatepass.service;
+package com.college.gatepass.service;
 
 import com.college.gatepass.entity.GatePass;
 import com.college.gatepass.entity.User;
@@ -500,4 +520,4 @@ public class EmailService {
         send(pass.getStudent().getEmail(),
                 "⚠️ Gate Pass Expired - Please Return to Campus", html);
     }
-}*/
+}
