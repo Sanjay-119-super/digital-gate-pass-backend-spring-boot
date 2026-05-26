@@ -163,7 +163,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",                          // local dev
-                "https://gatepassjuedu.vercel.app"                // ✅ YOUR NEW FRONTEND
+                "https://gatepass.cc.cd"                // ✅ YOUR NEW FRONTEND
         ));
         config.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
