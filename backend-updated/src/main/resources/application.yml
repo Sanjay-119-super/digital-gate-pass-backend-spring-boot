@@ -1,11 +1,11 @@
 #application.yml
 server:
-  port: 8080
+  port: ${PORT:8080}
   error:
     include-message: never   # production-ready: client ko stacktrace mat dikhao
 
 spring:
-  application:
+  application: #8235063809
     name: gatepass-backend
 
   datasource:
