@@ -5,7 +5,7 @@ server:
     include-message: never   # production-ready: client ko stacktrace mat dikhao
 
 spring:
-  application: #8235063809
+  application:
     name: gatepass-backend
 
   datasource:
@@ -38,54 +38,54 @@ spring:
       port: ${REDIS_PORT:6379}
       timeout: 2000ms
 
-#  mail:
-#    host: ${MAIL_HOST:smtp.gmail.com}
-#    port: 587
-#    username: ${MAIL_USER:}
-#    password: ${MAIL_PASS:}
-#    properties:
-#      mail.smtp:
-#        auth: true
-#        starttls.enable: true
-#        connectiontimeout: 5000
-#        timeout: 5000
-#        writetimeout: 5000
-
-#app:
-#  allowed-origin: ${ALLOWED_ORIGIN:http://localhost:3000}
-#  base-url: ${APP_BASE_URL:http://localhost:8080}
-#  jwt:
-#    secret: ${JWT_SECRET:change-me-please-this-must-be-at-least-32-bytes-long-secret-key!}
-#    access-ttl-minutes: 30
-#    refresh-ttl-days: 14
-#  pass:
-#    default-ttl-hours: 24
-#    qr-hmac-secret: ${QR_HMAC_SECRET:another-very-long-secret-for-qr-signing-change-in-prod!}
-#  rate-limit:
-#    auth-requests-per-minute: 10
-#  mail:
-#    from-name: "Gate Pass System"
-#    from-address: ${MAIL_FROM:no-reply@gatepass.college.edu}
-#    enabled: ${MAIL_ENABLED:false}    # production me true hoga, dev me false
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: 587
+    username: ${MAIL_USER:}
+    password: ${MAIL_PASS:}
+    properties:
+      mail.smtp:
+        auth: true
+        starttls.enable: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
 
 app:
   allowed-origin: ${ALLOWED_ORIGIN:http://localhost:3000}
   base-url: ${APP_BASE_URL:http://localhost:8080}
   jwt:
-    secret: ${JWT_SECRET:GatePassSecureJwtKey2026XYZAbCdEfMnOpQrStUvWx}
+    secret: ${JWT_SECRET:change-me-please-this-must-be-at-least-32-bytes-long-secret-key!}
     access-ttl-minutes: 30
     refresh-ttl-days: 14
   pass:
     default-ttl-hours: 24
-    qr-hmac-secret: ${QR_HMAC_SECRET:another-secret-change-in-prod!}
+    qr-hmac-secret: ${QR_HMAC_SECRET:another-very-long-secret-for-qr-signing-change-in-prod!}
   rate-limit:
     auth-requests-per-minute: 10
   mail:
     from-name: "Gate Pass System"
-    from-address: ${APP_MAIL_FROM_ADDRESS:onboarding@resend.dev}
-    enabled: ${APP_MAIL_ENABLED:false}   # dev=false, prod=true
-  resend:
-    api-key: ${APP_RESEND_API_KEY:}      # ← YAHAN SE AATA HAI
+    from-address: ${MAIL_FROM:no-reply@gatepass.college.edu}
+    enabled: ${MAIL_ENABLED:false}    # production me true hoga, dev me false
+
+#app:
+#  allowed-origin: ${ALLOWED_ORIGIN:http://localhost:3000}
+#  base-url: ${APP_BASE_URL:http://localhost:8080}
+#  jwt:
+#    secret: ${JWT_SECRET:GatePassSecureJwtKey2026XYZAbCdEfMnOpQrStUvWx}
+#    access-ttl-minutes: 30
+#    refresh-ttl-days: 14
+#  pass:
+#    default-ttl-hours: 24
+#    qr-hmac-secret: ${QR_HMAC_SECRET:another-secret-change-in-prod!}
+#  rate-limit:
+#    auth-requests-per-minute: 10
+#  mail:
+#    from-name: "Gate Pass System"
+#    from-address: ${APP_MAIL_FROM_ADDRESS:onboarding@resend.dev}
+#    enabled: ${APP_MAIL_ENABLED:false}   # dev=false, prod=true
+#  resend:
+#    api-key: ${APP_RESEND_API_KEY:}      # ← YAHAN SE AATA HAI
 
 management:
   endpoints:
